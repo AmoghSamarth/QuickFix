@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { LogIn, ShieldCheck, UserCheck, AlertCircle, Sparkles, ArrowLeft } from 'lucide-react';
+import { LogIn, ShieldCheck, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
@@ -40,52 +40,31 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center bg-gradient-to-br from-[#EDF9F9] via-[#E8F6F7] to-[#E2F2F4] py-10 px-4 sm:px-6 lg:px-8 selection:bg-[#0D9488]/20 selection:text-[#0D9488]">
-      {/* Back to Home Button */}
-      <div className="sm:mx-auto sm:w-full sm:max-w-md mb-4">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0D9488] hover:text-[#0f766e] transition-colors"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Back to Home</span>
-        </Link>
-      </div>
-
+    <div className="min-h-screen flex flex-col justify-center bg-[#F7F9FC] py-12 px-4 sm:px-6 lg:px-8 selection:bg-[#173B32]/10 selection:text-[#173B32]">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        {/* Brand Emblem */}
+        {/* Brand Emblem matching original design reference */}
         <div className="flex justify-center mb-3">
-          <div
-            className="w-12 h-12 rounded-2xl bg-white shadow-md border border-white/80 flex items-center justify-center"
-            style={{ width: '48px', height: '48px' }}
-          >
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ width: '30px', height: '30px' }}
-            >
-              <path
-                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.77 3.77z"
-                fill="#0D9488"
-              />
-            </svg>
-          </div>
+          <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+            <img
+              src="/logo.svg"
+              alt="QuickFix"
+              className="h-14 w-14 rounded-2xl shadow-md shrink-0"
+              style={{ width: '56px', height: '56px' }}
+            />
+          </Link>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0F172A]">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#173B32]">
           QuickFix
         </h1>
-        <p className="mt-1 text-xs sm:text-sm font-medium text-[#64748B]">
+        <p className="mt-1 text-sm font-medium text-[#5D6875]">
           Report it. Track it. Fix it.
         </p>
       </div>
 
-      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 shadow-xl shadow-teal-900/5 rounded-2xl border border-white/80 sm:px-10">
-          <h2 className="text-base font-bold text-[#0F172A] mb-5 text-center">
-            Sign In to Maintenance Portal
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-6 shadow-md rounded-2xl border border-[#D9E1E8] sm:px-10">
+          <h2 className="text-lg font-semibold text-[#1E293B] mb-6 text-center">
+            Sign In to QuickFix
           </h2>
 
           {errorMessage && (
@@ -122,25 +101,27 @@ export function Login() {
             />
 
             <div className="pt-2">
-              <button
+              <Button
                 type="submit"
-                disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 rounded-lg bg-[#00897B] hover:bg-[#00796B] text-white font-medium text-sm py-2.5 px-4 transition-colors cursor-pointer disabled:opacity-50"
+                variant="primary"
+                size="md"
+                isLoading={isLoading}
+                className="w-full"
+                icon={LogIn}
               >
-                <LogIn className="w-4 h-4" />
-                <span>{isLoading ? 'Signing In...' : 'Sign In'}</span>
-              </button>
+                Sign In
+              </Button>
             </div>
           </form>
 
           {/* Isolated Demo Mode Access Section */}
-          <div className="mt-8 pt-6 border-t border-slate-100">
-            <div className="flex items-center gap-1.5 justify-center mb-2 text-xs font-bold uppercase tracking-wider text-[#0D9488]">
+          <div className="mt-8 pt-6 border-t border-[#D9E1E8]">
+            <div className="flex items-center gap-1.5 justify-center mb-3 text-xs font-semibold uppercase tracking-wider text-[#2F6FED]">
               <Sparkles className="h-3.5 w-3.5" />
               <span>Explore Demo Mode</span>
             </div>
-            <p className="text-xs text-[#64748B] text-center mb-4">
-              Access the Employee or Administrator panel instantly:
+            <p className="text-xs text-[#5D6875] text-center mb-4">
+              Explore the frontend workflows instantly without requiring a live backend connection:
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -150,9 +131,9 @@ export function Login() {
                 size="sm"
                 onClick={() => handleDemoAccess('employee')}
                 icon={UserCheck}
-                className="justify-center border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488]"
+                className="justify-center border-slate-300 hover:border-[#2F6FED]"
               >
-                Employee Panel
+                Employee View
               </Button>
 
               <Button
@@ -161,16 +142,16 @@ export function Login() {
                 size="sm"
                 onClick={() => handleDemoAccess('admin')}
                 icon={ShieldCheck}
-                className="justify-center border-slate-200 hover:border-[#0D9488] hover:text-[#0D9488]"
+                className="justify-center border-slate-300 hover:border-[#173B32]"
               >
-                Admin Panel
+                Admin View
               </Button>
             </div>
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-[#64748B]">
-          Smart Maintenance &amp; Escalation Platform • Enterprise Edition
+        <p className="mt-6 text-center text-xs text-[#5D6875]">
+          QuickFix Maintenance &amp; Escalation Platform • Protected System
         </p>
       </div>
     </div>

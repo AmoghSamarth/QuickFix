@@ -7,7 +7,7 @@ import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 
 export function Home() {
-  const { isAuthenticated, isAdmin } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [supportModalOpen, setSupportModalOpen] = useState(false);
   const [supportMessage, setSupportMessage] = useState('');
   const [supportSubmitted, setSupportSubmitted] = useState(false);
@@ -65,7 +65,7 @@ export function Home() {
 
             {/* Login Button */}
             <Link
-              to={isAuthenticated ? (isAdmin ? '/admin/dashboard' : '/employee/dashboard') : '/login'}
+              to="/login"
               className="inline-flex items-center justify-center rounded-lg border border-[#0D9488] bg-transparent px-5 py-1.5 text-sm font-medium text-[#0D9488] hover:bg-[#0D9488]/10 transition-colors shadow-2xs"
             >
               Login
