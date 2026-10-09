@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Headphones, Send, CheckCircle2 } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 import Modal from '../components/common/Modal';
 import Input from '../components/common/Input';
 import Button from '../components/common/Button';
 
 export function Home() {
+  const { isAuthenticated, isAdmin } = useAuth();
   const [supportModalOpen, setSupportModalOpen] = useState(false);
   const [supportMessage, setSupportMessage] = useState('');
   const [supportSubmitted, setSupportSubmitted] = useState(false);
@@ -61,7 +63,8 @@ export function Home() {
               </Link>
 
               <Link
-                to="/employee/requests"
+                to={isAuthenticated ? '/employee/requests' : '/login'}
+                state={!isAuthenticated ? { from: { pathname: '/employee/requests' } } : undefined}
                 className="text-[#475569] hover:text-[#0D9488] transition-colors py-1"
               >
                 My Requests
@@ -76,20 +79,30 @@ export function Home() {
               </button>
 
               <Link
-                to="/admin/dashboard"
+                to={isAuthenticated && isAdmin ? '/admin/dashboard' : '/login'}
+                state={(!isAuthenticated || !isAdmin) ? { from: { pathname: '/admin/dashboard' } } : undefined}
                 className="text-[#475569] hover:text-[#0D9488] transition-colors py-1"
               >
                 Admin
               </Link>
             </div>
 
-            {/* Login Button */}
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center rounded-lg border border-[#0D9488] bg-transparent px-5 py-1.5 text-sm font-medium text-[#0D9488] hover:bg-[#0D9488]/10 transition-colors shadow-2xs"
-            >
-              Login
-            </Link>
+            {/* Login / Open Panel Button */}
+            {isAuthenticated ? (
+              <Link
+                to={isAdmin ? '/admin/dashboard' : '/employee/dashboard'}
+                className="inline-flex items-center justify-center rounded-lg bg-[#00897B] hover:bg-[#00796B] px-4 py-1.5 text-sm font-medium text-white transition-colors shadow-2xs"
+              >
+                Open Panel
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center rounded-lg border border-[#0D9488] bg-transparent px-5 py-1.5 text-sm font-medium text-[#0D9488] hover:bg-[#0D9488]/10 transition-colors shadow-2xs"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </nav>
       </header>
@@ -117,14 +130,16 @@ export function Home() {
             {/* CTA Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <Link
-                to="/employee/requests"
+                to={isAuthenticated ? '/employee/requests' : '/login'}
+                state={!isAuthenticated ? { from: { pathname: '/employee/requests' } } : undefined}
                 className="inline-flex items-center justify-center rounded-lg bg-[#00897B] hover:bg-[#00796B] text-white font-medium text-sm sm:text-base px-6 py-3 transition-colors shadow-xs"
               >
                 View My Requests
               </Link>
 
               <Link
-                to="/employee/requests/new"
+                to={isAuthenticated ? '/employee/requests/new' : '/login'}
+                state={!isAuthenticated ? { from: { pathname: '/employee/requests/new' } } : undefined}
                 className="inline-flex items-center justify-center rounded-lg bg-white/90 hover:bg-white border border-[#0D9488] text-[#0D9488] font-medium text-sm sm:text-base px-6 py-3 transition-colors shadow-2xs"
               >
                 Report an Issue

@@ -4,20 +4,20 @@ import { DEMO_USERS } from '../utils/mockData';
 import { AuthContext } from './authContextDef';
 
 export function AuthProvider({ children }) {
-  // Check if there is an existing session or demo state stored in localStorage
+  // Check if there is an existing session stored in localStorage (defaults to null/unauthenticated)
   const [user, setUser] = useState(() => {
     try {
       const stored = localStorage.getItem('quickfix_user');
-      return stored ? JSON.parse(stored) : DEMO_USERS.employee; // Defaults to employee demo mode for immediate exploratory viewing
+      return stored ? JSON.parse(stored) : null;
     } catch {
-      return DEMO_USERS.employee;
+      return null;
     }
   });
 
-  const [token, setToken] = useState(() => localStorage.getItem('quickfix_token') || 'demo-session-token');
+  const [token, setToken] = useState(() => localStorage.getItem('quickfix_token') || null);
   const [isDemoMode, setIsDemoMode] = useState(() => {
     const isDemo = localStorage.getItem('quickfix_is_demo');
-    return isDemo === null ? true : isDemo === 'true'; // Default true for initial setup exploratory testing
+    return isDemo === 'true';
   });
   const [loading] = useState(false);
 
