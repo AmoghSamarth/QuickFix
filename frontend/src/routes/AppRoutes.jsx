@@ -6,6 +6,7 @@ import AppLayout from '../components/layout/AppLayout';
 // Pages
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import ErrorPage from '../pages/ErrorPage';
 import NotFound from '../pages/NotFound';
 import Profile from '../pages/Profile';
 
@@ -69,6 +70,7 @@ export function AppRoutes() {
 
       {/* Public Route */}
       <Route path="/login" element={<Login />} />
+      <Route path="/error" element={<ErrorPage />} />
 
       {/* Protected Routes wrapped in AppLayout */}
       <Route
