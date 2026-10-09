@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import AppLayout from '../components/layout/AppLayout';
 
 // Pages
+import Home from '../pages/Home';
 import Login from '../pages/Login';
 import NotFound from '../pages/NotFound';
 import Profile from '../pages/Profile';
@@ -60,24 +61,11 @@ function RequireRole({ role, children }) {
   return children;
 }
 
-/**
- * Root index redirector
- */
-function RootRedirect() {
-  const { isAuthenticated, isAdmin } = useAuth();
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return <Navigate to={isAdmin ? '/admin/dashboard' : '/employee/dashboard'} replace />;
-}
-
 export function AppRoutes() {
   return (
     <Routes>
-      {/* Root redirect */}
-      <Route path="/" element={<RootRedirect />} />
+      {/* Public Home Page (from design reference) */}
+      <Route path="/" element={<Home />} />
 
       {/* Public Route */}
       <Route path="/login" element={<Login />} />
