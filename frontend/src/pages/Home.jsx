@@ -28,16 +28,19 @@ export function Home() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             {/* Custom Teal Wrench Icon matching the reference */}
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105">
+            <div className="w-9 h-9 min-w-[36px] min-h-[36px] max-w-[36px] max-h-[36px] shrink-0 rounded-xl flex items-center justify-center transition-transform group-hover:scale-105" style={{ width: '36px', height: '36px' }}>
               <svg
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-7 h-7 text-[#0D9488]"
+                className="w-7 h-7 shrink-0"
+                style={{ width: '28px', height: '28px', maxWidth: '28px', maxHeight: '28px' }}
               >
                 <path
                   d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.77 3.77z"
-                  fill="currentColor"
+                  fill="#0D9488"
                 />
               </svg>
             </div>
@@ -204,8 +207,8 @@ export function Home() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-3">
           {/* Left Info with Headset Icon */}
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E0F4F5] text-[#0D9488]">
-              <Headphones className="h-5 w-5" />
+            <div className="flex h-10 w-10 min-w-[40px] min-h-[40px] shrink-0 items-center justify-center rounded-full bg-[#E0F4F5] text-[#0D9488]" style={{ width: '40px', height: '40px' }}>
+              <Headphones className="h-5 w-5 shrink-0" style={{ width: '20px', height: '20px' }} />
             </div>
             <div className="h-8 w-px bg-slate-300/80 hidden sm:block" />
             <div>
