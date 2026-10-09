@@ -75,7 +75,7 @@ export function Login() {
           </div>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0F172A]">
-          SmartFix
+          QuickFix
         </h1>
         <p className="mt-1 text-xs sm:text-sm font-medium text-[#64748B]">
           Report it. Track it. Fix it.

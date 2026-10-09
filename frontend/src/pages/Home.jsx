@@ -47,13 +47,13 @@ export function Home() {
               </svg>
             </div>
             <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#0F172A]">
-              SmartFix
+              QuickFix
             </span>
           </Link>
 
-          {/* Right Nav Links */}
+          {/* Right Nav Links: Home and Login */}
           <div className="flex items-center gap-6 sm:gap-8">
-            <div className="hidden md:flex items-center gap-7 text-sm font-medium">
+            <div className="flex items-center gap-7 text-sm font-medium">
               {/* Home with active teal underline */}
               <Link
                 to="/"
@@ -61,48 +61,15 @@ export function Home() {
               >
                 Home
               </Link>
-
-              <Link
-                to={isAuthenticated ? '/employee/requests' : '/login'}
-                state={!isAuthenticated ? { from: { pathname: '/employee/requests' } } : undefined}
-                className="text-[#475569] hover:text-[#0D9488] transition-colors py-1"
-              >
-                My Requests
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setSupportModalOpen(true)}
-                className="text-[#475569] hover:text-[#0D9488] transition-colors py-1 cursor-pointer"
-              >
-                Help
-              </button>
-
-              <Link
-                to={isAuthenticated && isAdmin ? '/admin/dashboard' : '/login'}
-                state={(!isAuthenticated || !isAdmin) ? { from: { pathname: '/admin/dashboard' } } : undefined}
-                className="text-[#475569] hover:text-[#0D9488] transition-colors py-1"
-              >
-                Admin
-              </Link>
             </div>
 
-            {/* Login / Open Panel Button */}
-            {isAuthenticated ? (
-              <Link
-                to={isAdmin ? '/admin/dashboard' : '/employee/dashboard'}
-                className="inline-flex items-center justify-center rounded-lg bg-[#00897B] hover:bg-[#00796B] px-4 py-1.5 text-sm font-medium text-white transition-colors shadow-2xs"
-              >
-                Open Panel
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center rounded-lg border border-[#0D9488] bg-transparent px-5 py-1.5 text-sm font-medium text-[#0D9488] hover:bg-[#0D9488]/10 transition-colors shadow-2xs"
-              >
-                Login
-              </Link>
-            )}
+            {/* Login Button */}
+            <Link
+              to={isAuthenticated ? (isAdmin ? '/admin/dashboard' : '/employee/dashboard') : '/login'}
+              className="inline-flex items-center justify-center rounded-lg border border-[#0D9488] bg-transparent px-5 py-1.5 text-sm font-medium text-[#0D9488] hover:bg-[#0D9488]/10 transition-colors shadow-2xs"
+            >
+              Login
+            </Link>
           </div>
         </nav>
       </header>
